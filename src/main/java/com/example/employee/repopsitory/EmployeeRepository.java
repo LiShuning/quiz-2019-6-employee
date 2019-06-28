@@ -46,7 +46,7 @@ public class EmployeeRepository {
 
     public boolean updateById(int id, Employee employee) {
         try {
-            list.stream().map(v -> v.getId() == id ? employee : v);
+            list = list.stream().map(v -> v.getId() == id ? employee : v).collect(Collectors.toList());
             return true;
         } catch (Exception e) {
             return false;
