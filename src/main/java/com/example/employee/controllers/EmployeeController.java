@@ -28,4 +28,9 @@ public class EmployeeController {
     public String add(@ModelAttribute Employee employee) {
         return repository.insert(employee) ? "添加成功" : "添加失败";
     }
+
+    @RequestMapping(value = "/employees/{id}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable String id) {
+        return repository.deleteById(Integer.valueOf(id)) ? "删除成功" : "删除失败";
+    }
 }
