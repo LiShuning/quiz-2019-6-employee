@@ -2,10 +2,7 @@ package com.example.employee.controllers;
 
 import com.example.employee.entity.Employee;
 import com.example.employee.repopsitory.EmployeeRepository;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,10 @@ public class EmployeeController {
     @RequestMapping(value = "/employees/{id}" , method = RequestMethod.GET)
     public Employee getById(@PathVariable String id) {
         return repository.findById(Integer.valueOf(id));
+    }
+
+    @RequestMapping(value = "/employees", method = RequestMethod.POST)
+    public String add(@ModelAttribute Employee employee) {
+        return repository.insert(employee) ? "添加成功" : "添加失败";
     }
 }
