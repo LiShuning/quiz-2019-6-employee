@@ -33,4 +33,9 @@ public class EmployeeController {
     public String delete(@PathVariable String id) {
         return repository.deleteById(Integer.valueOf(id)) ? "删除成功" : "删除失败";
     }
+
+    @RequestMapping(value = "employees/{id}", method = RequestMethod.PUT)
+    public String update(@PathVariable String id, @ModelAttribute Employee employee) {
+        return repository.updateById(Integer.valueOf(id), employee) ? "更新成功" : "更新失败";
+    }
 }
